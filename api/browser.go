@@ -2,6 +2,7 @@ package api
 
 import (
 	"github.com/cli/go-gh/pkg/browser"
+	"github.com/fzdwx/open/history"
 	"io"
 )
 
@@ -14,7 +15,7 @@ func InitBrowser(writer io.Writer) {
 }
 
 func Browse(url string) error {
-	err := Append(url)
+	err := history.Append(url)
 	if err != nil {
 		return err
 	}

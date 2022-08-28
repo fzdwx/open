@@ -1,7 +1,8 @@
-package api
+package history
 
 import (
 	"fmt"
+	"github.com/spf13/cobra"
 	"os"
 	"os/user"
 	"path/filepath"
@@ -18,7 +19,7 @@ const (
 
 func init() {
 	current, err := user.Current()
-	Check(err)
+	cobra.CheckErr(err)
 	homeDir = current.HomeDir
 }
 
@@ -29,7 +30,7 @@ func Append(url string) error {
 	}
 	defer f.Close()
 
-	data := fmt.Sprintf("%s|%d", url, time.Now().UnixNano())
+	data := fmt.Sprintf("%s|;|%d", url, time.Now().UnixNano())
 	_, err = f.WriteString(data + "\n")
 	if err != nil {
 		return err
@@ -40,7 +41,7 @@ func Append(url string) error {
 
 func openHistory() (*os.File, error) {
 	filename := fmt.Sprintf("%s%s%s", homeDir, string(filepath.Separator), historyFile)
-	f, err := os.OpenFile(filename, os.O_APPEND|os.O_CREATE, 0755)
+	f, err := os.OpenFile(filename, os.O_CREATE|os.O_APPEND|os.O_WRONLY, os.ModeAppend)
 	if err != nil {
 		return nil, err
 	}
