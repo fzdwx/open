@@ -14,5 +14,10 @@ func InitBrowser(writer io.Writer) {
 }
 
 func Browse(url string) error {
+	err := Append(url)
+	if err != nil {
+		return err
+	}
+
 	return b.Browse(url)
 }
