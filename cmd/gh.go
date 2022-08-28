@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/MakeNowJust/heredoc"
 	"github.com/fzdwx/open/api"
 	"github.com/spf13/cobra"
 )
@@ -9,16 +10,28 @@ const (
 	baseUrl = "https://github.com/"
 )
 
-var profile bool
+var (
+	profile bool
+)
 
 // ghCmd represents the gh command
 var ghCmd = &cobra.Command{
 	Use:   "gh",
 	Short: "Open github in browser",
+	Example: heredoc.Doc(`
+	$ open gh 
+    $ open gh  -p
+    $ open gh  fzdwx
+    $ open gh  fzdwx/open
+	`),
 	Run: func(cmd *cobra.Command, args []string) {
 		url := baseUrl
 		if profile {
 			url = baseUrl + api.UserName()
+		}
+
+		if len(args) > 0 {
+			url = baseUrl + args[0]
 		}
 
 		api.Check(api.Browse(url))

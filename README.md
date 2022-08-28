@@ -8,16 +8,16 @@ go install github.com/fzdwx/open
 
 ## gh
 
-open https://github.com
+open github
 
 ```shell
-open gh
-```
-
-open https://github.com/{username}
-
-> 需要使用gh认证，才能使用。
-
-```shell
-open gh -p
+# open https://github.com/
+open gh 
+# open your github profile. https://github.com/{username}
+# must use gh auth.
+open gh  -p
+# open https://github.com/fzdwx
+open gh  fzdwx
+# open https://github.com/fzdwx/open
+open gh  fzdwx/open
 ```

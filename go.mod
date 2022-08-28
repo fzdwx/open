@@ -3,6 +3,7 @@ module github.com/fzdwx/open
 go 1.18
 
 require (
+	github.com/MakeNowJust/heredoc v1.0.0
 	github.com/cli/go-gh v0.1.0
 	github.com/google/go-github/v46 v46.0.0
 	github.com/spf13/cobra v1.5.0

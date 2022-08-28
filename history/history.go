@@ -41,7 +41,7 @@ func Append(url string) error {
 
 func openHistory() (*os.File, error) {
 	filename := fmt.Sprintf("%s%s%s", homeDir, string(filepath.Separator), historyFile)
-	f, err := os.OpenFile(filename, os.O_CREATE|os.O_APPEND|os.O_WRONLY, os.ModeAppend)
+	f, err := os.OpenFile(filename, os.O_CREATE|os.O_APPEND|os.O_WRONLY, os.ModePerm)
 	if err != nil {
 		return nil, err
 	}
