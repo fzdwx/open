@@ -7,11 +7,13 @@ import (
 )
 
 const (
-	baseUrl = "https://github.com/"
+	baseUrl   = "https://github.com/"
+	searchUrl = "https://github.com/search?q="
 )
 
 var (
 	profile bool
+	search  bool
 )
 
 // ghCmd represents the gh command
@@ -28,10 +30,12 @@ var ghCmd = &cobra.Command{
 		url := baseUrl
 		if profile {
 			url = baseUrl + api.UserName()
-		}
-
-		if len(args) > 0 {
-			url = baseUrl + args[0]
+		} else if search {
+			url = searchUrl + args[0]
+		} else {
+			if len(args) > 0 {
+				url = baseUrl + args[0]
+			}
 		}
 
 		api.Check(api.Browse(url))
@@ -48,6 +52,7 @@ func init() {
 	// ghCmd.PersistentFlags().String("foo", "", "A help for foo")
 
 	ghCmd.Flags().BoolVarP(&profile, "profile", "p", false, "Open your github profile(auth in gh/cli) in browser")
+	ghCmd.Flags().BoolVarP(&search, "search", "s", false, "Use github search you input keywords")
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
 	// ghCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
