@@ -26,4 +26,7 @@ open gh  fzdwx/open
 
 # open https://github.com/search?q=just
 open gh just -s
+
+# open https://github.com/fzdwx?tab=stars&q=qwe
+open gh qwe --star
 ```

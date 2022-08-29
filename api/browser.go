@@ -19,6 +19,5 @@ func Browse(url string) error {
 	if err != nil {
 		return err
 	}
-
 	return b.Browse(url)
 }
