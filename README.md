@@ -3,7 +3,7 @@
 open url in browser.
 
 ```shell
-go install github.com/fzdwx/open 
+go install github.com/fzdwx/open@latest 
 ```
 
 ## gh
