@@ -15,14 +15,17 @@ import (
 var rootCmd = &cobra.Command{
 	Use:     "open [subcommand]",
 	Short:   "Open url in browser",
-	Version: "v0.1.1",
+	Version: "v0.1.2",
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	Run: func(cmd *cobra.Command, args []string) {
-
-		if val, ok := alias.Get(args[0]); ok {
-			api.BrowseWithCheck(val.Path)
+		if len(args) > 1 {
+			if val, ok := alias.Get(args[0]); ok {
+				api.BrowseWithCheck(val.Path)
+			}
 		}
+
+		cmd.Help()
 	},
 }
 
