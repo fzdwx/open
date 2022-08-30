@@ -7,51 +7,51 @@ import (
 	"github.com/spf13/cobra"
 )
 
-const (
-	baseUrl   = "https://github.com/"
-	searchUrl = "https://github.com/search?q="
-	starUrl   = "https://github.com/%s?tab=stars&q="
-)
+func initGh() *cobra.Command {
+	const (
+		baseUrl   = "https://github.com/"
+		searchUrl = "https://github.com/search?q="
+		starUrl   = "https://github.com/%s?tab=stars&q="
+	)
 
-var (
-	profile bool
-	search  bool
-	star    bool
-)
+	var (
+		profile bool
+		search  bool
+		star    bool
+	)
 
-// ghCmd represents the gh command
-var ghCmd = &cobra.Command{
-	Use:   "gh",
-	Short: "Open github in browser",
-	Example: heredoc.Doc(
-		`$ open gh  -p
-		$ open gh  fzdwx
-		$ open gh  fzdwx/open
+	// ghCmd represents the gh command
+	var ghCmd = &cobra.Command{
+		Use:   "gh",
+		Short: "Open github in browser",
+		Example: heredoc.Doc(
+			`$ open gh  -p
+		$ open gh fzdwx
+		$ open gh fzdwx/open
+		$ open gh qwe --star
 	`),
-	Run: func(cmd *cobra.Command, args []string) {
-		url := baseUrl
-		if profile {
-			url = baseUrl + api.UserName()
-		} else if search {
-			url = searchUrl + args[0]
-		} else if star {
-			url = fmt.Sprintf(starUrl, api.UserName())
+		Run: func(cmd *cobra.Command, args []string) {
+			url := baseUrl
+			if profile {
+				url = baseUrl + api.UserName()
+			} else if search {
+				url = searchUrl + args[0]
+			} else if star {
+				url = fmt.Sprintf(starUrl, api.UserName())
 
-			if len(args) > 0 {
-				url += args[0]
+				if len(args) > 0 {
+					url += args[0]
+				}
+
+			} else {
+				if len(args) > 0 {
+					url = baseUrl + args[0]
+				}
 			}
 
-		} else {
-			if len(args) > 0 {
-				url = baseUrl + args[0]
-			}
-		}
-		api.Check(api.Browse(url))
-	},
-}
-
-func init() {
-	rootCmd.AddCommand(ghCmd)
+			api.BrowseWithCheck(url)
+		},
+	}
 
 	// Here you will define your flags and configuration settings.
 
@@ -65,4 +65,6 @@ func init() {
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
 	// ghCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+
+	return ghCmd
 }

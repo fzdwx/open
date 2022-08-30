@@ -21,3 +21,9 @@ func Browse(url string) error {
 	}
 	return b.Browse(url)
 }
+
+func BrowseWithCheck(url string) {
+	err := history.Append(url)
+	Check(err)
+	Check(b.Browse(url))
+}

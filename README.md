@@ -30,3 +30,16 @@ open gh just -s
 # open https://github.com/fzdwx?tab=stars&q=qwe
 open gh qwe --star
 ```
+
+## alias
+
+add alias to open
+
+```shell
+# add alias
+open set bd https://baidu.com
+open bd
+
+# delete alias
+open del bd
+```
