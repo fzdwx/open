@@ -15,7 +15,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:     "open [subcommand]",
 	Short:   "Open url in browser",
-	Version: "v0.1.0",
+	Version: "v0.1.1",
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	Run: func(cmd *cobra.Command, args []string) {
