@@ -13,9 +13,9 @@ import (
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use:     "open [subcommand]",
+	Use:     "open xxx",
 	Short:   "Open url in browser",
-	Version: "v0.1.2",
+	Version: "v0.1.3",
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	Run: func(cmd *cobra.Command, args []string) {
