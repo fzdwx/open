@@ -49,6 +49,9 @@ func LoadCmds() []*cobra.Command {
 			Run: func(cmd *cobra.Command, args []string) {
 				api.BrowseWithCheck(a.Path)
 			},
+			ValidArgsFunction: func(cmd *cobra.Command, args []string, toComplete string) ([]string, cobra.ShellCompDirective) {
+				return []string{a.Path}, cobra.ShellCompDirectiveNoSpace
+			},
 		}
 
 		cmds = append(cmds, cmd)
