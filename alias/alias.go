@@ -42,7 +42,8 @@ func LoadCmds() []*cobra.Command {
 	prefix := lipgloss.NewStyle().Bold(true).Foreground(lipgloss.Color("4")).Render("This is alias will open")
 
 	var cmds []*cobra.Command
-	for k, a := range aliasMap {
+	for k := range aliasMap {
+		a := aliasMap[k]
 		cmd := &cobra.Command{
 			Use:   k,
 			Short: prefix + " " + a.Path,
@@ -53,7 +54,6 @@ func LoadCmds() []*cobra.Command {
 				return []string{a.Path}, cobra.ShellCompDirectiveNoSpace
 			},
 		}
-
 		cmds = append(cmds, cmd)
 	}
 
