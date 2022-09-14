@@ -11,4 +11,5 @@ go install github.com/fzdwx/open@latest
 ```
 GH_TOKEN=xxx
 OPEN_LOG_FILE=$tmp$/fzdwx_open.log
-```
+``` 
+
