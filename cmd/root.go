@@ -1,8 +1,11 @@
 package cmd
 
 import (
-	"github.com/fzdwx/open/alias"
-	"github.com/fzdwx/open/api"
+	"fmt"
+	"github.com/fzdwx/open/pkg/cons"
+	"github.com/fzdwx/open/pkg/user"
+	"github.com/gookit/slog"
+	"github.com/gookit/slog/handler"
 	"github.com/pterm/pcli"
 	"github.com/pterm/pterm"
 	"os"
@@ -15,17 +18,12 @@ import (
 var rootCmd = &cobra.Command{
 	Use:     "open xxx",
 	Short:   "Open url in browser",
-	Version: "v0.1.5",
+	Version: "v0.2.0",
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	Run: func(cmd *cobra.Command, args []string) {
-		if len(args) > 1 {
-			if val, ok := alias.Get(args[0]); ok {
-				api.BrowseWithCheck(val.Path)
-			}
-		}
-
-		cmd.Help()
+		fmt.Printf("Your Name: %s\n", user.Name())
+		fmt.Printf("Your token: %s\n", user.Token())
 	},
 }
 
@@ -38,13 +36,13 @@ func Execute() {
 	go func() {
 		<-c
 		pterm.Warning.Println("user interrupt")
-		pcli.CheckForUpdates()
+		_ = pcli.CheckForUpdates()
 		os.Exit(0)
 	}()
 
 	// Execute cobra
 	if err := rootCmd.Execute(); err != nil {
-		pcli.CheckForUpdates()
+		_ = pcli.CheckForUpdates()
 		os.Exit(1)
 	}
 
@@ -52,12 +50,7 @@ func Execute() {
 }
 
 func init() {
-	api.InitBrowser(os.Stdout)
-	rootCmd.AddCommand(initGh())
-	rootCmd.AddCommand(initSet())
-	rootCmd.AddCommand(initDel())
-	rootCmd.AddCommand(alias.LoadCmds()...)
-	rootCmd.AddCommand(initCompletion())
+	slog.PushHandler(handler.MustFileHandler(cons.GetLogFileName(), handler.WithLogLevels(slog.AllLevels)))
 	// Here you will define your flags and configuration settings.
 	// Cobra supports persistent flags, which, if defined here,
 	// will be global for your application.
@@ -66,10 +59,8 @@ func init() {
 
 	// Cobra also supports local flags, which will only run
 	// when this action is called directly.
-	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
-
 	// Use https://github.com/pterm/pcli to style the output of cobra.
-	pcli.SetRepo("fzdwx/open")
+	_ = pcli.SetRepo("fzdwx/open")
 	pcli.SetRootCmd(rootCmd)
 	pcli.Setup()
 }

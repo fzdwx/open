@@ -6,40 +6,9 @@ open url in browser.
 go install github.com/fzdwx/open@latest 
 ```
 
-## gh
+## env
 
-open github
-
-```shell
-# open https://github.com/
-open gh 
-
-# open your github profile. https://github.com/{username}
-# must use gh auth.
-open gh  -p
-
-# open https://github.com/fzdwx
-open gh  fzdwx
-
-# open https://github.com/fzdwx/open
-open gh  fzdwx/open
-
-# open https://github.com/search?q=just
-open gh just -s
-
-# open https://github.com/fzdwx?tab=stars&q=qwe
-open gh qwe --star
 ```
-
-## alias
-
-add alias to open
-
-```shell
-# add alias
-open set bd https://baidu.com
-open bd
-
-# delete alias
-open del bd
+GH_TOKEN=xxx
+OPEN_LOG_FILE=$tmp$/fzdwx_open.log
 ```

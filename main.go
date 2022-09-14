@@ -21,8 +21,13 @@ THE SOFTWARE.
 */
 package main
 
-import "github.com/fzdwx/open/cmd"
+import (
+	"fmt"
+	"os"
+)
 
 func main() {
-	cmd.Execute()
+
+	fmt.Println(os.TempDir())
+	//cmd.Execute()
 }
