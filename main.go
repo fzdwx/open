@@ -22,12 +22,9 @@ THE SOFTWARE.
 package main
 
 import (
-	"fmt"
-	"os"
+	"github.com/fzdwx/open/cmd"
 )
 
 func main() {
-
-	fmt.Println(os.TempDir())
-	//cmd.Execute()
+	cmd.Execute()
 }

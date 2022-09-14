@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"fmt"
+	"github.com/fzdwx/open/cmd/gh"
 	"github.com/fzdwx/open/pkg/cons"
 	"github.com/fzdwx/open/pkg/user"
 	"github.com/gookit/slog"
@@ -16,8 +17,11 @@ import (
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use:     "open xxx",
-	Short:   "Open url in browser",
+	Use:   "open xxx",
+	Short: "Open url in browser",
+	Example: `$ open gh
+$open gh p
+$open gh -s fzdwx -> open https://github.com/search?q=fzdwx`,
 	Version: "v0.2.0",
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
@@ -51,6 +55,8 @@ func Execute() {
 
 func init() {
 	slog.PushHandler(handler.MustFileHandler(cons.GetLogFileName(), handler.WithLogLevels(slog.AllLevels)))
+	rootCmd.AddCommand(gh.Command())
+
 	// Here you will define your flags and configuration settings.
 	// Cobra supports persistent flags, which, if defined here,
 	// will be global for your application.

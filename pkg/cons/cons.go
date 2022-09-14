@@ -15,6 +15,8 @@ const (
 	// default /tmp/fzdwx_open.log
 	EnvLogFile    = "OPEN_LOG_FILE"
 	logFilePrefix = "fzdwx_open.log"
+
+	GithubUrl = "https://github.com"
 )
 
 func GetLogFileName() string {
