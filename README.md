@@ -43,6 +43,7 @@ OPEN_LOG_FILE=$tmp$/fzdwx_open.log
 
 ## RodeMap
 
+
 - [ ] history
   - [x] history recode
   - [ ] history view
