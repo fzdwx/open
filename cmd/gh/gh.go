@@ -10,10 +10,10 @@ import (
 
 var (
 	gh = &cobra.Command{
-		Use:   "gh [subcommand]",
+		Use:   "gh [search keyword] | [subcommand]",
 		Short: "open github in browser",
-		Example: `$ open gh -> open https://github.com
-$ open gh fzdwx -> open https://github.com/search?q=fzdwx`,
+		Example: `$ open gh        -> open https://github.com
+$ open gh fzdwx  -> open https://github.com/search?q=fzdwx`,
 		Run: func(cmd *cobra.Command, args []string) {
 			url := cons.GithubUrl
 

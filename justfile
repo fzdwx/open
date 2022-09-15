@@ -9,3 +9,9 @@ build:
 update:
   go get -u
   go mod tidy -v
+  
+  
+push message="Update":
+    git add .
+    git commit -m {{message}}
+    git push origin main
