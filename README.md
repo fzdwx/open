@@ -18,7 +18,10 @@ go install github.com/fzdwx/open@latest
 open gh   
 
 # open https://github.com/search?q=fzdwx
-open gh -s fzdwx
+open gh fzdwx
+
+# open https://github.com/search?q=golang
+open gh golang
 
 # open your github profile
 open gh profile

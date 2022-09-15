@@ -13,25 +13,21 @@ var (
 		Use:   "gh [subcommand]",
 		Short: "open github in browser",
 		Example: `$ open gh -> open https://github.com
-$ open gh -s fzdwx -> open https://github.com/search?q=fzdwx`,
+$ open gh fzdwx -> open https://github.com/search?q=fzdwx`,
 		Run: func(cmd *cobra.Command, args []string) {
 			url := cons.GithubUrl
 
-			if strx.IsNotBlank(ghSearchString) {
-				url = fmt.Sprintf("%s/search?q=%s", url, strx.URLEncode(ghSearchString))
+			if len(args) >= 1 && strx.IsNotBlank(args[0]) {
+				url = fmt.Sprintf("%s/search?q=%s", url, strx.URLEncode(args[0]))
 			}
 
 			cobra.CheckErr(browser.Open(url))
 		},
 	}
-
-	ghSearchString = ""
 )
 
 func Command() *cobra.Command {
 	gh.AddCommand(profile)
-
-	gh.Flags().StringVarP(&ghSearchString, "search", "s", ghSearchString, "search keyword in github. eg: https://github.com/search?q=fzdwx")
 
 	return gh
 }

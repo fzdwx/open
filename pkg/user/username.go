@@ -42,7 +42,7 @@ func checkInit() {
 func Name() string {
 	checkInit()
 
-	if username == "" {
+	if strx.IsBlank(username) {
 		username = func() string {
 			client, err := gh.RESTClient(nil)
 			cobra.CheckErr(err)
@@ -54,6 +54,7 @@ func Name() string {
 			return username
 		}()
 	}
+
 	slog.Infof("username is %s", username)
 	return username
 }
@@ -69,7 +70,7 @@ func Token() string {
 func readTokenFromEnv() string {
 	token := os.Getenv(cons.EnvGhToken)
 
-	if token == "" {
+	if strx.IsBlank(token) {
 		slog.Debug("env token is blank")
 	} else {
 		slog.Debugf("env token is %s", token)
