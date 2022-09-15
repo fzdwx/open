@@ -23,6 +23,12 @@ open gh fzdwx
 # open https://github.com/search?q=golang
 open gh golang
 
+# open https://github.com/search?q=sky&l=java
+open gh -l java sky
+
+# open https://github.com/search?q=fzdwx
+open gh -l java sky 
+
 # open your github profile
 open gh profile
 open gh p
