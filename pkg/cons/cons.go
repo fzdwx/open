@@ -3,6 +3,7 @@ package cons
 import (
 	"fmt"
 	"github.com/fzdwx/open/pkg/env"
+	"github.com/spf13/cobra"
 	"os"
 	"path/filepath"
 )
@@ -18,8 +19,39 @@ const (
 
 	GithubUrl = "https://github.com"
 
-	Version = "v0.2.0"
+	Version = "v0.2.1"
+
+	HistoryFile = "/.fzdwx_open/history"
+
+	openDir = "/.fzdwx_open"
 )
+
+var (
+	userDir = getUserDir()
+)
+
+func getUserDir() string {
+	dir, err := os.UserHomeDir()
+	cobra.CheckErr(err)
+	return dir
+}
+
+// UserDir get user home
+func UserDir() string {
+	return userDir
+}
+
+func OpenDir() string {
+	return fmt.Sprintf("%s%s", UserDir(), openDir)
+}
+
+func MkOpenDir() error {
+	err := os.Mkdir(OpenDir(), os.ModePerm)
+	if os.IsExist(err) {
+		return nil
+	}
+	return err
+}
 
 func GetLogFileName() string {
 	return fmt.Sprintf("%s%s%s", os.TempDir(), string(filepath.Separator), env.Or(EnvLogFile, logFilePrefix))

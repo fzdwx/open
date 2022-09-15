@@ -4,6 +4,7 @@ go 1.18
 
 require (
 	github.com/MarvinJWendt/testza v0.4.3
+	github.com/charmbracelet/lipgloss v0.6.0
 	github.com/cli/go-gh v0.1.0
 	github.com/fzdwx/x/strx v0.0.0-20220915021043-95f9efdbf779
 	github.com/gookit/slog v0.3.3
@@ -15,7 +16,6 @@ require (
 require (
 	atomicgo.dev/cursor v0.1.1 // indirect
 	atomicgo.dev/keyboard v0.2.8 // indirect
-	github.com/charmbracelet/lipgloss v0.6.0 // indirect
 	github.com/cli/browser v1.1.0 // indirect
 	github.com/cli/safeexec v1.0.0 // indirect
 	github.com/cli/shurcooL-graphql v0.0.1 // indirect

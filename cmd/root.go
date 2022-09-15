@@ -3,6 +3,7 @@ package cmd
 import (
 	"fmt"
 	"github.com/fzdwx/open/cmd/gh"
+	"github.com/fzdwx/open/cmd/history"
 	"github.com/fzdwx/open/pkg/cons"
 	"github.com/fzdwx/open/pkg/user"
 	"github.com/gookit/slog"
@@ -21,8 +22,8 @@ var (
 		Use:   "open xxx",
 		Short: "Open url in browser",
 		Example: `$ open gh
-$open gh p
-$open gh -s fzdwx -> open https://github.com/search?q=fzdwx`,
+$ open gh p
+$ open gh -s fzdwx -> open https://github.com/search?q=fzdwx`,
 		Version: cons.Version,
 		// Uncomment the following line if your bare application
 		// has an action associated with it:
@@ -60,6 +61,7 @@ func Execute() {
 func init() {
 	cobra.OnInitialize(initConfig)
 	rootCmd.AddCommand(gh.Command())
+	rootCmd.AddCommand(history.Command())
 
 	// Here you will define your flags and configuration settings.
 	// Cobra supports persistent flags, which, if defined here,
