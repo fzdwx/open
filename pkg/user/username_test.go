@@ -1,10 +1,10 @@
 package user
 
 import (
-	"github.com/gookit/goutil/testutil/assert"
+	"github.com/MarvinJWendt/testza"
 	"testing"
 )
 
 func Test_Username(t *testing.T) {
-	assert.Eq(t, "fzdwx", Name())
+	testza.AssertEqual(t, "fzdwx", Name())
 }

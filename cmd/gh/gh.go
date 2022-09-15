@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"github.com/fzdwx/open/pkg/browser"
 	"github.com/fzdwx/open/pkg/cons"
-	"github.com/gookit/goutil/strutil"
+	"github.com/fzdwx/x/strx"
 	"github.com/spf13/cobra"
 )
 
@@ -17,8 +17,8 @@ $ open gh -s fzdwx -> open https://github.com/search?q=fzdwx`,
 		Run: func(cmd *cobra.Command, args []string) {
 			url := cons.GithubUrl
 
-			if strutil.IsNotBlank(ghSearchString) {
-				url = fmt.Sprintf("%s/search?q=%s", url, strutil.URLEncode(ghSearchString))
+			if strx.IsNotBlank(ghSearchString) {
+				url = fmt.Sprintf("%s/search?q=%s", url, strx.URLEncode(ghSearchString))
 			}
 
 			cobra.CheckErr(browser.Open(url))

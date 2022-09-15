@@ -17,6 +17,8 @@ const (
 	logFilePrefix = "fzdwx_open.log"
 
 	GithubUrl = "https://github.com"
+
+	Version = "v0.2.0"
 )
 
 func GetLogFileName() string {

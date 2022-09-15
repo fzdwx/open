@@ -5,8 +5,7 @@ import (
 	"github.com/cli/go-gh/pkg/auth"
 	"github.com/fzdwx/open/pkg/cons"
 	"github.com/fzdwx/open/pkg/env"
-	"github.com/gookit/goutil/errorx"
-	"github.com/gookit/goutil/strutil"
+	"github.com/fzdwx/x/strx"
 	"github.com/gookit/slog"
 	"github.com/spf13/cobra"
 	"os"
@@ -15,26 +14,34 @@ import (
 var (
 	ghToken  = ""
 	username = ""
+	initFlag = false
 )
 
-func init() {
+func checkInit() {
+	if initFlag {
+		return
+	}
+
+	initFlag = true
+
 	ghToken = env.OrWithFunc(readTokenFromEnv(), func() string {
 		host, _ := auth.DefaultHost()
 		token, _ := auth.TokenForHost(host)
+
+		slog.Infof("github cli token is %s", token)
 		return token
 	})
 
-	if strutil.IsBlank(ghToken) {
-		err := errorx.New("can not get user token")
-		slog.ErrorT(err)
-		cobra.CheckErr(err)
+	if strx.IsBlank(ghToken) {
+		slog.Fatal("can not get user token")
 	}
 
-	slog.Infof("user token %s", ghToken)
 }
 
 // Name get user Github name
 func Name() string {
+	checkInit()
+
 	if username == "" {
 		username = func() string {
 			client, err := gh.RESTClient(nil)
@@ -47,14 +54,14 @@ func Name() string {
 			return username
 		}()
 	}
-
-	slog.Infof("username %s", username)
-
+	slog.Infof("username is %s", username)
 	return username
 }
 
 // Token user github token
 func Token() string {
+	checkInit()
+
 	return ghToken
 }
 
@@ -65,7 +72,7 @@ func readTokenFromEnv() string {
 	if token == "" {
 		slog.Debug("env token is blank")
 	} else {
-		slog.Debugf("env token %s", token)
+		slog.Debugf("env token is %s", token)
 	}
 
 	return token

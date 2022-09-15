@@ -15,21 +15,25 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// rootCmd represents the base command when called without any subcommands
-var rootCmd = &cobra.Command{
-	Use:   "open xxx",
-	Short: "Open url in browser",
-	Example: `$ open gh
+var (
+	// rootCmd represents the base command when called without any subcommands
+	rootCmd = &cobra.Command{
+		Use:   "open xxx",
+		Short: "Open url in browser",
+		Example: `$ open gh
 $open gh p
 $open gh -s fzdwx -> open https://github.com/search?q=fzdwx`,
-	Version: "v0.2.0",
-	// Uncomment the following line if your bare application
-	// has an action associated with it:
-	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Printf("Your Name: %s\n", user.Name())
-		fmt.Printf("Your token: %s\n", user.Token())
-	},
-}
+		Version: cons.Version,
+		// Uncomment the following line if your bare application
+		// has an action associated with it:
+		Run: func(cmd *cobra.Command, args []string) {
+			fmt.Printf("Your Name: %s\n", user.Name())
+			fmt.Printf("Your token: %s\n", user.Token())
+		},
+	}
+
+	debug bool
+)
 
 // Execute adds all child commands to the root command and sets flags appropriately.
 // This is called by main.main(). It only needs to happen once to the rootCmd.
@@ -54,7 +58,7 @@ func Execute() {
 }
 
 func init() {
-	slog.PushHandler(handler.MustFileHandler(cons.GetLogFileName(), handler.WithLogLevels(slog.AllLevels)))
+	cobra.OnInitialize(initConfig)
 	rootCmd.AddCommand(gh.Command())
 
 	// Here you will define your flags and configuration settings.
@@ -63,10 +67,18 @@ func init() {
 
 	// rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.gh-open.yaml)")
 
+	rootCmd.PersistentFlags().BoolVarP(&debug, "debug", "d", false, "show log in console")
 	// Cobra also supports local flags, which will only run
 	// when this action is called directly.
 	// Use https://github.com/pterm/pcli to style the output of cobra.
 	_ = pcli.SetRepo("fzdwx/open")
 	pcli.SetRootCmd(rootCmd)
 	pcli.Setup()
+}
+
+func initConfig() {
+	if !debug {
+		slog.SetLogLevel(slog.PanicLevel)
+	}
+	slog.PushHandler(handler.MustFileHandler(cons.GetLogFileName(), handler.WithLogLevels(slog.AllLevels)))
 }
