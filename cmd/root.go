@@ -1,9 +1,11 @@
 package cmd
 
 import (
+	"errors"
 	"fmt"
 	"github.com/fzdwx/open/cmd/gh"
 	"github.com/fzdwx/open/cmd/history"
+	"github.com/fzdwx/open/pkg/browser"
 	"github.com/fzdwx/open/pkg/cons"
 	"github.com/fzdwx/open/pkg/user"
 	"github.com/gookit/slog"
@@ -28,6 +30,11 @@ $ open gh -s fzdwx -> open https://github.com/search?q=fzdwx`,
 		// Uncomment the following line if your bare application
 		// has an action associated with it:
 		Run: func(cmd *cobra.Command, args []string) {
+
+			if !errors.Is(browser.OpenFromClipboard(), cons.ClipboardEmptyError) {
+				return
+			}
+
 			fmt.Printf("Your Name: %s\n", user.Name())
 			fmt.Printf("Your token: %s\n", user.Token())
 		},

@@ -32,6 +32,12 @@ open gh -l java sky
 # open your github profile
 open gh profile
 open gh p
+
+# read url from clipboard
+# 1. copy url. eg: https://github.com/search?q=fzdwx
+# 2. this function does not do any verification, url and file path verification
+# run `open`
+open 
 ```
 
 ## config (env)
@@ -43,9 +49,9 @@ OPEN_LOG_FILE=$tmp$/fzdwx_open.log
 
 ## RodeMap
 
-
+- [ ] read url from stdin. eg: `https://github.com/search?q=fzdwx | open`
 - [ ] history
-  - [x] history recode
-  - [ ] history view
+    - [x] history recode
+    - [ ] history view
 - [ ] custom alias
 

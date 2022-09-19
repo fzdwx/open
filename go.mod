@@ -7,10 +7,12 @@ require (
 	github.com/charmbracelet/lipgloss v0.6.0
 	github.com/cli/go-gh v0.1.0
 	github.com/fzdwx/x/strx v0.0.0-20220915021043-95f9efdbf779
+	github.com/gookit/goutil v0.5.12
 	github.com/gookit/slog v0.3.3
 	github.com/pterm/pcli v0.4.6
 	github.com/pterm/pterm v0.12.46
 	github.com/spf13/cobra v1.5.0
+	golang.design/x/clipboard v0.6.2
 )
 
 require (
@@ -23,7 +25,6 @@ require (
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/google/shlex v0.0.0-20191202100458-e7afc7fbc510 // indirect
 	github.com/gookit/color v1.5.2 // indirect
-	github.com/gookit/goutil v0.5.12 // indirect
 	github.com/gookit/gsr v0.0.8 // indirect
 	github.com/henvic/httpretty v0.1.0 // indirect
 	github.com/inconshreveable/mousetrap v1.0.1 // indirect
@@ -43,6 +44,9 @@ require (
 	github.com/tidwall/pretty v1.2.0 // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	github.com/xo/terminfo v0.0.0-20220910002029-abceb7e1c41e // indirect
+	golang.org/x/exp/shiny v0.0.0-20220916125017-b168a2c6b86b // indirect
+	golang.org/x/image v0.0.0-20211028202545-6944b10bf410 // indirect
+	golang.org/x/mobile v0.0.0-20210716004757-34ab1303b554 // indirect
 	golang.org/x/net v0.0.0-20220909164309-bea034e7d591 // indirect
 	golang.org/x/sys v0.0.0-20220913175220-63ea55921009 // indirect
 	golang.org/x/term v0.0.0-20220722155259-a9ba230a4035 // indirect

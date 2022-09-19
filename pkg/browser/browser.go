@@ -4,7 +4,10 @@ import (
 	"fmt"
 	"github.com/charmbracelet/lipgloss"
 	"github.com/cli/go-gh/pkg/browser"
+	"github.com/fzdwx/open/pkg/cons"
 	"github.com/fzdwx/open/pkg/history"
+	"github.com/gookit/slog"
+	"golang.design/x/clipboard"
 	"os"
 )
 
@@ -40,4 +43,18 @@ func Open(url string) error {
 	}
 
 	return err
+}
+
+// OpenFromClipboard read url from clipboard and open it.
+func OpenFromClipboard() error {
+	read := clipboard.Read(clipboard.FmtText)
+	if len(read) == 0 {
+		return cons.ClipboardEmptyError
+	}
+
+	url := string(read)
+
+	slog.Debug("read url from clipboard: %s", url)
+
+	return Open(url)
 }
