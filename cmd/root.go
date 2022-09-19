@@ -31,10 +31,10 @@ $ open gh -s fzdwx -> open https://github.com/search?q=fzdwx`,
 		// has an action associated with it:
 		Run: func(cmd *cobra.Command, args []string) {
 
-			err := browser.OpenFromStdin()
-			if !errors.Is(err, cons.StdinEmptyError) {
-				panic(err)
-			}
+			//err := browser.OpenFromStdin()
+			//if !errors.Is(err, cons.StdinEmptyError) {
+			//	panic(err)
+			//}
 
 			err = browser.OpenFromClipboard()
 			if !errors.Is(err, cons.ClipboardEmptyError) {

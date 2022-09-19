@@ -21,9 +21,8 @@ THE SOFTWARE.
 */
 package main
 
-import "github.com/fzdwx/open/pkg/browser"
+import "github.com/fzdwx/open/cmd"
 
 func main() {
-	browser.OpenFromStdin()
-	//cmd.Execute()
+	cmd.Execute()
 }

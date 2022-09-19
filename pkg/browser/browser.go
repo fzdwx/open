@@ -64,15 +64,19 @@ func OpenFromClipboard() error {
 //
 // ignore more than 4096
 func OpenFromStdin() error {
+
 	reader := bufio.NewReader(os.Stdin)
-	line, _, err := reader.ReadLine()
+
+	bytes := make([]byte, 4096)
+	n, err := reader.Read(bytes)
+
+	if n == 0 {
+		return cons.ClipboardEmptyError
+	}
+
 	if err != nil {
 		return err
 	}
 
-	if len(line) == 0 {
-		return cons.ClipboardEmptyError
-	}
-
-	return Open(string(line))
+	return Open(string(bytes))
 }

@@ -19,7 +19,7 @@ const (
 
 	GithubUrl = "https://github.com"
 
-	Version = "v0.2.3"
+	Version = "v0.2.4"
 
 	HistoryFile = "/.fzdwx_open/history"
 
