@@ -38,6 +38,10 @@ open gh p
 # 2. this function does not do any verification, url and file path verification
 # run `open`
 open 
+
+# read url from stdin
+#!note: Ignore scenes where a line exceeds 4096
+echo https://github.com/search?q=fzdwx | open
 ```
 
 ## config (env)
@@ -49,7 +53,7 @@ OPEN_LOG_FILE=$tmp$/fzdwx_open.log
 
 ## RodeMap
 
-- [ ] read url from stdin. eg: `https://github.com/search?q=fzdwx | open`
+- [x] read url from stdin. eg: `echo https://github.com/search?q=fzdwx | open`
 - [ ] history
     - [x] history recode
     - [ ] history view

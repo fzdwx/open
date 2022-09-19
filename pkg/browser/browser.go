@@ -1,6 +1,7 @@
 package browser
 
 import (
+	"bufio"
 	"fmt"
 	"github.com/charmbracelet/lipgloss"
 	"github.com/cli/go-gh/pkg/browser"
@@ -57,4 +58,21 @@ func OpenFromClipboard() error {
 	slog.Debug("read url from clipboard: %s", url)
 
 	return Open(url)
+}
+
+// OpenFromStdin read url from stdin
+//
+// ignore more than 4096
+func OpenFromStdin() error {
+	reader := bufio.NewReader(os.Stdin)
+	line, _, err := reader.ReadLine()
+	if err != nil {
+		return err
+	}
+
+	if len(line) == 0 {
+		return cons.ClipboardEmptyError
+	}
+
+	return Open(string(line))
 }
