@@ -3,13 +3,14 @@ package browser
 import (
 	"bufio"
 	"fmt"
+	"os"
+
 	"github.com/charmbracelet/lipgloss"
 	"github.com/cli/go-gh/pkg/browser"
 	"github.com/fzdwx/open/pkg/cons"
 	"github.com/fzdwx/open/pkg/history"
 	"github.com/gookit/slog"
 	"golang.design/x/clipboard"
-	"os"
 )
 
 var (
@@ -77,6 +78,5 @@ func OpenFromStdin() error {
 	if err != nil {
 		return err
 	}
-
 	return Open(string(bytes))
 }

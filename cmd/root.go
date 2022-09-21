@@ -3,6 +3,9 @@ package cmd
 import (
 	"errors"
 	"fmt"
+	"os"
+	"os/signal"
+
 	"github.com/fzdwx/open/cmd/gh"
 	"github.com/fzdwx/open/cmd/history"
 	"github.com/fzdwx/open/pkg/browser"
@@ -12,8 +15,6 @@ import (
 	"github.com/gookit/slog/handler"
 	"github.com/pterm/pcli"
 	"github.com/pterm/pterm"
-	"os"
-	"os/signal"
 
 	"github.com/spf13/cobra"
 )
@@ -36,7 +37,7 @@ $ open gh -s fzdwx -> open https://github.com/search?q=fzdwx`,
 			//	panic(err)
 			//}
 
-			err = browser.OpenFromClipboard()
+			err := browser.OpenFromClipboard()
 			if !errors.Is(err, cons.ClipboardEmptyError) {
 				panic(err)
 			}

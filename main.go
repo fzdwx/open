@@ -21,8 +21,11 @@ THE SOFTWARE.
 */
 package main
 
-import "github.com/fzdwx/open/cmd"
+import (
+	"github.com/fzdwx/open/cmd"
+)
 
+// main function
 func main() {
 	cmd.Execute()
 }
