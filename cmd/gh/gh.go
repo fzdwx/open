@@ -72,6 +72,7 @@ $ open gh fzdwx -u -> https://github.com/search?q=fzdwx&type=users`,
 
 func Command() *cobra.Command {
 	gh.AddCommand(profile)
+	gh.AddCommand(repo)
 
 	gh.PersistentFlags().BoolVarP(&typeCodeFlag, "code", "c", typeCodeFlag, "set search type is code")
 	gh.PersistentFlags().BoolVarP(&typeCommitsFlag, "commits", "m", typeCommitsFlag, "set search type is commits")

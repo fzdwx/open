@@ -33,6 +33,9 @@ open gh -l java sky
 open gh profile
 open gh p
 
+# open current project git remote url  in browser. https://github.com/fzdwx/open
+open gh repo
+
 # read url from clipboard
 # 1. copy url. eg: https://github.com/search?q=fzdwx
 # 2. this function does not do any verification, url and file path verification
