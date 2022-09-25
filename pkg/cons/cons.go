@@ -24,6 +24,9 @@ const (
 	HistoryFile = "/.fzdwx_open/history"
 
 	openDir = "/.fzdwx_open"
+
+	HttpPrefix  = "http://"
+	HttpsPrefix = "https://"
 )
 
 var (

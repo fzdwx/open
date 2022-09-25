@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"errors"
-	"fmt"
 	"os"
 	"os/signal"
 
@@ -10,7 +9,6 @@ import (
 	"github.com/fzdwx/open/cmd/history"
 	"github.com/fzdwx/open/pkg/browser"
 	"github.com/fzdwx/open/pkg/cons"
-	"github.com/fzdwx/open/pkg/user"
 	"github.com/gookit/slog"
 	"github.com/gookit/slog/handler"
 	"github.com/pterm/pcli"
@@ -38,12 +36,12 @@ $ open gh -s fzdwx -> open https://github.com/search?q=fzdwx`,
 			//}
 
 			err := browser.OpenFromClipboard()
-			if !errors.Is(err, cons.ClipboardEmptyError) {
+			if !(errors.Is(err, cons.ClipboardEmptyError) || errors.Is(err, cons.PathIsNotValidError)) {
 				panic(err)
 			}
 
-			fmt.Printf("Your Name: %s\n", user.Name())
-			fmt.Printf("Your token: %s\n", user.Token())
+			//fmt.Printf("Your Name: %s\n", user.Name())
+			//fmt.Printf("Your token: %s\n", user.Token())
 		},
 	}
 

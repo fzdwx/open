@@ -3,6 +3,7 @@ package browser
 import (
 	"bufio"
 	"fmt"
+	"github.com/gookit/goutil/strutil"
 	"os"
 
 	"github.com/charmbracelet/lipgloss"
@@ -56,6 +57,10 @@ func OpenFromClipboard() error {
 
 	url := string(read)
 
+	if IsNotWebUrlOrLocalFilePath(url) {
+		return cons.PathIsNotValidError
+	}
+
 	slog.Debug("read url from clipboard: %s", url)
 
 	return Open(url)
@@ -79,4 +84,20 @@ func OpenFromStdin() error {
 		return err
 	}
 	return Open(string(bytes))
+}
+
+// IsWebUrlOrLocalFilePath check s is web url or local file path?
+func IsWebUrlOrLocalFilePath(s string) bool {
+	if strutil.IsStartsOf(s, []string{cons.HttpPrefix, cons.HttpsPrefix}) {
+		return true
+	}
+
+	_, err := os.Open(s)
+
+	return err == nil
+}
+
+// IsNotWebUrlOrLocalFilePath check s is not web url or local file path?
+func IsNotWebUrlOrLocalFilePath(s string) bool {
+	return !IsWebUrlOrLocalFilePath(s)
 }
