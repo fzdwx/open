@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"errors"
+	"github.com/fzdwx/open/cmd/url"
 	"os"
 	"os/signal"
 
@@ -74,6 +75,7 @@ func init() {
 	cobra.OnInitialize(initConfig)
 	rootCmd.AddCommand(gh.Command())
 	rootCmd.AddCommand(history.Command())
+	rootCmd.AddCommand(url.Command())
 
 	// Here you will define your flags and configuration settings.
 	// Cobra supports persistent flags, which, if defined here,
