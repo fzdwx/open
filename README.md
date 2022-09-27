@@ -41,6 +41,9 @@ open gh repo
 # 2. this function does not do any verification, url and file path verification
 # run `open`
 open 
+
+# open the specified url
+open url https://www.bilibili.com/
 ```
 
 ## config (env)
