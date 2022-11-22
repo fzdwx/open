@@ -3,12 +3,12 @@ package cmd
 import (
 	"errors"
 	"github.com/fzdwx/open/cmd/url"
+	"github.com/fzdwx/open/pkg/browser"
 	"os"
 	"os/signal"
 
 	"github.com/fzdwx/open/cmd/gh"
 	"github.com/fzdwx/open/cmd/history"
-	"github.com/fzdwx/open/pkg/browser"
 	"github.com/fzdwx/open/pkg/cons"
 	"github.com/gookit/slog"
 	"github.com/gookit/slog/handler"
@@ -36,10 +36,12 @@ $ open gh -s fzdwx -> open https://github.com/search?q=fzdwx`,
 			//	panic(err)
 			//}
 
-			err := browser.OpenFromClipboard()
-			if !(errors.Is(err, cons.ClipboardEmptyError) || errors.Is(err, cons.PathIsNotValidError)) {
-				panic(err)
-			}
+			go func() {
+				err := browser.OpenFromClipboard()
+				if !(errors.Is(err, cons.ClipboardEmptyError) || errors.Is(err, cons.PathIsNotValidError)) {
+					panic(err)
+				}
+			}()
 
 			//fmt.Printf("Your Name: %s\n", user.Name())
 			//fmt.Printf("Your token: %s\n", user.Token())
