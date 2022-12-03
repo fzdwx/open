@@ -18,6 +18,9 @@ go install github.com/fzdwx/open@latest
 open https://github.com
 open https://google.com
 
+# open the specified url
+open url https://www.bilibili.com/
+
 # open dir
 open . 
 open /home/fzdwx
@@ -43,15 +46,6 @@ open gh p
 
 # open current project git remote url  in browser. https://github.com/fzdwx/open
 open gh repo
-
-# read url from clipboard
-# 1. copy url. eg: https://github.com/search?q=fzdwx
-# 2. this function does not do any verification, url and file path verification
-# run `open`
-open 
-
-# open the specified url
-open url https://www.bilibili.com/
 ```
 
 ## config (env)
