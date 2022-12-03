@@ -25,6 +25,7 @@ import (
 	"github.com/fzdwx/open/cmd"
 )
 
+// main function
 func main() {
 	cmd.Execute()
 }

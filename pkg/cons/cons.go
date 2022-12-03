@@ -19,11 +19,14 @@ const (
 
 	GithubUrl = "https://github.com"
 
-	Version = "v0.3"
+	Version = "v0.4"
 
 	HistoryFile = "/.fzdwx_open/history"
 
 	openDir = "/.fzdwx_open"
+
+	HttpPrefix  = "http://"
+	HttpsPrefix = "https://"
 )
 
 var (
