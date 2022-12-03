@@ -15,7 +15,7 @@ go install github.com/fzdwx/open@latest
 
 ```shell
 # open url
-open htts://github.com
+open https://github.com
 open https://google.com
 
 # open dir

@@ -23,7 +23,7 @@ var repo = &cobra.Command{
 		cobra.CheckErr(command.Run())
 		remotePairs := strutil.Split(buffer.String(), "\n")
 
-		pattern, err := regexp.Compile("(http|ftp|https):\\/\\/[\\w\\-_]+(\\.[\\w\\-_]+)+([\\w\\-\\.,@?^=%&:/~\\+#]*[\\w\\-\\@?^=%&/~\\+#])?")
+		pattern, err := regexp.Compile("(http|https):\\/\\/[\\w\\-_]+(\\.[\\w\\-_]+)+([\\w\\-\\.,@?^=%&:/~\\+#]*[\\w\\-\\@?^=%&/~\\+#])?")
 		if err != nil {
 			cobra.CheckErr(err)
 		}
