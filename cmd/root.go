@@ -1,10 +1,10 @@
 package cmd
 
 import (
-	"errors"
 	"fmt"
 	"github.com/fzdwx/open/cmd/gh"
 	"github.com/fzdwx/open/cmd/history"
+	"github.com/fzdwx/open/cmd/url"
 	"github.com/fzdwx/open/pkg/browser"
 	"github.com/fzdwx/open/pkg/cons"
 	"github.com/fzdwx/open/pkg/user"
