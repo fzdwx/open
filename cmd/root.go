@@ -1,7 +1,6 @@
 package cmd
 
 import (
-	"errors"
 	"fmt"
 	"github.com/fzdwx/open/cmd/gh"
 	"github.com/fzdwx/open/cmd/history"
@@ -25,13 +24,18 @@ var (
 		Short: "Open url in browser",
 		Example: `$ open gh
 $ open gh p
-$ open gh -s fzdwx -> open https://github.com/search?q=fzdwx`,
+$ open gh -s fzdwx -> open https://github.com/search?q=fzdwx
+$ open https://github.com`,
 		Version: cons.Version,
-		// Uncomment the following line if your bare application
-		// has an action associated with it:
+		Args: func(cmd *cobra.Command, args []string) error {
+			if len(args) <= 1 {
+				return nil
+			}
+			return fmt.Errorf("accept only one / zero argument")
+		},
 		Run: func(cmd *cobra.Command, args []string) {
-
-			if !errors.Is(browser.OpenFromClipboard(), cons.ClipboardEmptyError) {
+			if len(args) >= 1 {
+				cobra.CheckErr(browser.Open(args[0]))
 				return
 			}
 

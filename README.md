@@ -14,6 +14,14 @@ go install github.com/fzdwx/open@latest
 ## use case
 
 ```shell
+# open url
+open htts://github.com
+open https://google.com
+
+# open dir
+open . 
+open /home/fzdwx
+
 # open github.com
 open gh   
 
