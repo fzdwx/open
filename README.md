@@ -22,11 +22,11 @@ open https://google.com
 open url https://www.bilibili.com/
 
 # open dir
-open . 
+open .
 open /home/fzdwx
 
 # open github.com
-open gh   
+open gh
 
 # open https://github.com/search?q=fzdwx
 open gh fzdwx
@@ -38,7 +38,7 @@ open gh golang
 open gh -l java sky
 
 # open https://github.com/search?q=fzdwx
-open gh -l java sky 
+open gh -l java sky
 
 # open your github profile
 open gh profile
@@ -46,6 +46,12 @@ open gh p
 
 # open current project git remote url  in browser. https://github.com/fzdwx/open
 open gh repo
+
+# open https://github.com/fzdwx/open
+open gh repo fzdwx/open
+# open # https://github.com/{username}/open`,
+open gh repo open
+
 ```
 
 ## config (env)
