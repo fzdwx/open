@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/fzdwx/open/cmd/gh"
 	"github.com/fzdwx/open/cmd/history"
+	"github.com/fzdwx/open/cmd/log"
 	"github.com/fzdwx/open/cmd/url"
 	"github.com/fzdwx/open/internal/browser"
 	"github.com/fzdwx/open/internal/cons"
@@ -35,13 +36,12 @@ $ open https://github.com`,
 			return fmt.Errorf("accept only one / zero argument")
 		},
 		Run: func(cmd *cobra.Command, args []string) {
-			if len(args) >= 1 {
-				cobra.CheckErr(browser.Open(args[0]))
-				return
+			if len(args) < 1 {
+				fmt.Printf("Your Name: %s\n", user.Name())
+				fmt.Printf("Your token: %s\n", user.Token())
 			}
 
-			fmt.Printf("Your Name: %s\n", user.Name())
-			fmt.Printf("Your token: %s\n", user.Token())
+			cobra.CheckErr(browser.Open(args[0]))
 		},
 	}
 
@@ -75,6 +75,7 @@ func init() {
 	rootCmd.AddCommand(gh.Command())
 	rootCmd.AddCommand(history.Command())
 	rootCmd.AddCommand(url.Command())
+	rootCmd.AddCommand(log.Command())
 
 	// Here you will define your flags and configuration settings.
 	// Cobra supports persistent flags, which, if defined here,

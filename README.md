@@ -52,12 +52,16 @@ open gh repo fzdwx/open
 # open # https://github.com/{username}/open`,
 open gh repo open
 
+# preview logfile
+open log
+
 ```
 
 ## config (env)
 
 ```
 GH_TOKEN=xxx
+OPEN_LOG_PREVIEW=bat(fallback to cat)
 ``` 
 
 ## RodeMap

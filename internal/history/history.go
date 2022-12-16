@@ -31,5 +31,5 @@ func Write(url string) error {
 	}
 
 	data = append(data, '\n')
-	return fsutil.WriteFile(cons.HistoryFile(), data, os.ModePerm, fsutil.FsCWAFlags)
+	return fsutil.WriteFile(cons.HistoryFileName(), data, os.ModePerm, fsutil.FsCWAFlags)
 }

@@ -2,6 +2,7 @@ package cons
 
 import (
 	"fmt"
+	"os/exec"
 	"testing"
 )
 
@@ -14,8 +15,12 @@ func TestOpenDir(t *testing.T) {
 }
 
 func TestHistoryFile(t *testing.T) {
-	fmt.Println(HistoryFile())
+	fmt.Println(HistoryFileName())
 }
 func TestLogFileName(t *testing.T) {
 	fmt.Println(LogFileName())
+}
+func TestLookUp(t *testing.T) {
+	path, _ := exec.LookPath("bat")
+	fmt.Println(path)
 }
