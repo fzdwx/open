@@ -12,7 +12,7 @@ const (
 
 	GithubUrl = "https://github.com"
 
-	Version = "v0.5"
+	Version = "v0.6"
 
 	HttpPrefix  = "http://"
 	HttpsPrefix = "https://"
