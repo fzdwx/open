@@ -2,8 +2,8 @@ package gh
 
 import (
 	"fmt"
-	"github.com/fzdwx/open/pkg/browser"
-	"github.com/fzdwx/open/pkg/cons"
+	"github.com/fzdwx/open/internal/browser"
+	"github.com/fzdwx/open/internal/cons"
 	"github.com/fzdwx/x/strx"
 	"github.com/spf13/cobra"
 )

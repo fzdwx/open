@@ -1,7 +1,7 @@
 package url
 
 import (
-	"github.com/fzdwx/open/pkg/browser"
+	"github.com/fzdwx/open/internal/browser"
 	"github.com/spf13/cobra"
 )
 

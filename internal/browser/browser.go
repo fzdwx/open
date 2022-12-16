@@ -8,8 +8,8 @@ import (
 
 	"github.com/charmbracelet/lipgloss"
 	"github.com/cli/go-gh/pkg/browser"
-	"github.com/fzdwx/open/pkg/cons"
-	"github.com/fzdwx/open/pkg/history"
+	"github.com/fzdwx/open/internal/cons"
+	"github.com/fzdwx/open/internal/history"
 	"github.com/gookit/slog"
 	"golang.design/x/clipboard"
 )

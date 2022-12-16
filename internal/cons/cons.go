@@ -1,8 +1,6 @@
 package cons
 
 import (
-	"fmt"
-	"github.com/fzdwx/open/pkg/env"
 	"github.com/spf13/cobra"
 	"os"
 	"path/filepath"
@@ -11,19 +9,10 @@ import (
 const (
 	// EnvGhToken env key with github token
 	EnvGhToken = "GH_TOKEN"
-	// EnvLogFile env key wtih log file
-	//
-	// default /tmp/fzdwx_open.log
-	EnvLogFile    = "OPEN_LOG_FILE"
-	logFilePrefix = "fzdwx_open.log"
 
 	GithubUrl = "https://github.com"
 
 	Version = "v0.5"
-
-	HistoryFile = "/.fzdwx_open/history"
-
-	openDir = "/.fzdwx_open"
 
 	HttpPrefix  = "http://"
 	HttpsPrefix = "https://"
@@ -39,13 +28,21 @@ func getUserDir() string {
 	return dir
 }
 
-// UserDir get user home
-func UserDir() string {
-	return userDir
+// ~/.config/fzdwx/path
+func join(path ...string) string {
+	return filepath.Join(getUserDir(), ".config", "fzdwx", filepath.Join(path...))
 }
 
 func OpenDir() string {
-	return fmt.Sprintf("%s%s", UserDir(), openDir)
+	return join("open")
+}
+
+func HistoryFile() string {
+	return join("open", "history")
+}
+
+func LogFileName() string {
+	return join("open", "log")
 }
 
 func MkOpenDir() error {
@@ -54,8 +51,4 @@ func MkOpenDir() error {
 		return nil
 	}
 	return err
-}
-
-func GetLogFileName() string {
-	return fmt.Sprintf("%s%s%s", os.TempDir(), string(filepath.Separator), env.Or(EnvLogFile, logFilePrefix))
 }

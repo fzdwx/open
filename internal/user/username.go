@@ -3,8 +3,8 @@ package user
 import (
 	"github.com/cli/go-gh"
 	"github.com/cli/go-gh/pkg/auth"
-	"github.com/fzdwx/open/pkg/cons"
-	"github.com/fzdwx/open/pkg/env"
+	"github.com/fzdwx/open/internal/cons"
+	"github.com/fzdwx/open/internal/env"
 	"github.com/fzdwx/x/strx"
 	"github.com/gookit/slog"
 	"github.com/spf13/cobra"

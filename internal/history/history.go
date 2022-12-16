@@ -1,19 +1,13 @@
 package history
 
 import (
-	"fmt"
-	"github.com/fzdwx/open/pkg/cons"
-	"github.com/fzdwx/open/pkg/user"
+	"github.com/fzdwx/open/internal/cons"
+	"github.com/fzdwx/open/internal/user"
 	"github.com/gookit/goutil/fsutil"
 	"github.com/gookit/goutil/jsonutil"
 	"os"
 	"time"
 )
-
-// FileName get open history file name
-func FileName() string {
-	return fmt.Sprintf("%s%s", cons.UserDir(), cons.HistoryFile)
-}
 
 type Model struct {
 	Time     int64
@@ -37,5 +31,5 @@ func Write(url string) error {
 	}
 
 	data = append(data, '\n')
-	return fsutil.WriteFile(FileName(), data, os.ModePerm, fsutil.FsCWAFlags)
+	return fsutil.WriteFile(cons.HistoryFile(), data, os.ModePerm, fsutil.FsCWAFlags)
 }

@@ -5,9 +5,9 @@ import (
 	"github.com/fzdwx/open/cmd/gh"
 	"github.com/fzdwx/open/cmd/history"
 	"github.com/fzdwx/open/cmd/url"
-	"github.com/fzdwx/open/pkg/browser"
-	"github.com/fzdwx/open/pkg/cons"
-	"github.com/fzdwx/open/pkg/user"
+	"github.com/fzdwx/open/internal/browser"
+	"github.com/fzdwx/open/internal/cons"
+	"github.com/fzdwx/open/internal/user"
 	"github.com/gookit/slog"
 	"github.com/gookit/slog/handler"
 	"github.com/pterm/pcli"
@@ -95,5 +95,5 @@ func initConfig() {
 	if !debug {
 		slog.SetLogLevel(slog.PanicLevel)
 	}
-	slog.PushHandler(handler.MustFileHandler(cons.GetLogFileName(), handler.WithLogLevels(slog.AllLevels)))
+	slog.PushHandler(handler.MustFileHandler(cons.LogFileName(), handler.WithLogLevels(slog.AllLevels)))
 }
