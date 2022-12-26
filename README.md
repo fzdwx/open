@@ -68,7 +68,7 @@ OPEN_LOG_PREVIEW=bat(fallback to cat)
 
 - [ ] read url from stdin. eg: `echo https://github.com/search?q=fzdwx | open`
 - [ ] history
-    - [x] history recode
+    - [x] history record
     - [ ] history view
 - [ ] custom alias
 
