@@ -21,6 +21,7 @@ push message="Update":
 release version:
     sed -i 's/Version = ".*"/Version = "{{version}}"/' ./internal/cons/cons.go
     git tag {{version}}
+    git add .
     git commit -m "release {{version}}"
     git push
 
