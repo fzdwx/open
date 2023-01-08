@@ -13,7 +13,7 @@ var (
 		Short:   "Show open log",
 		Example: `$ open log`,
 		Run: func(cmd *cobra.Command, args []string) {
-			command := exec.Command(cons.LogPreview(), cons.LogFileName())
+			command := exec.Command(cons.PreviewCommand(), cons.LogFileName())
 			command.Stdout = os.Stdout
 			command.Stderr = os.Stderr
 			command.Stdin = os.Stdin

@@ -43,11 +43,11 @@ func LogFileName() string {
 	return join("open", "log")
 }
 
-func LogPreview() string {
-	return env.OrWithFunc("OPEN_LOG_PREVIEW", loopUpLogPreviewExec)
+func PreviewCommand() string {
+	return env.OrWithFunc("OPEN_PREVIEW", loopUpPreviewExec)
 }
 
-func loopUpLogPreviewExec() string {
+func loopUpPreviewExec() string {
 	for _, name := range []string{"bat", "cat"} {
 		if _, err := exec.LookPath(name); err == nil {
 			return name

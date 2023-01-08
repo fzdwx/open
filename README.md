@@ -61,7 +61,7 @@ open log
 
 ```
 GH_TOKEN=xxx
-OPEN_LOG_PREVIEW=bat(fallback to cat)
+OPEN_PREVIEW=bat(fallback to cat)
 ``` 
 
 ## RodeMap
