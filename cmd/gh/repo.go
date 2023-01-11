@@ -17,6 +17,7 @@ var repo = &cobra.Command{
 	Example: `$ open gh repo # must in git project
 $ open gh repo fzdwx/open # open https://github.com/fzdwx/open
 $ open gh repo open # open # https://github.com/{username}/open`,
+	Aliases: []string{"."},
 	Run: func(cmd *cobra.Command, args []string) {
 		var url string
 
