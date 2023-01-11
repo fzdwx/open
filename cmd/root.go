@@ -39,6 +39,7 @@ $ open https://github.com`,
 			if len(args) < 1 {
 				fmt.Printf("Your Name: %s\n", user.Name())
 				fmt.Printf("Your token: %s\n", user.Token())
+				return
 			}
 
 			cobra.CheckErr(browser.Open(args[0]))
