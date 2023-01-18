@@ -21,7 +21,10 @@ func Command(root *cobra.Command) *cobra.Command {
 	alias.AddCommand(add)
 	alias.AddCommand(list)
 	alias.AddCommand(remove)
+
+	// hide alias subcommand
 	alias.AddCommand(info)
+	alias.AddCommand(run)
 
 	loadAlias(root)
 

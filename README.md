@@ -54,7 +54,7 @@ $ open alias list
 `alias list` with `fzf`:
 
 ```shell
-$ open alias ls | fzf --preview 'open alias info {}'
+$ open alias ls | fzf --preview 'open alias info {}' --bind 'enter:execute(open alias run {})'
 ```
 
 ### open gh
