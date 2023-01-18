@@ -10,13 +10,13 @@ import (
 
 var (
 	remove = &cobra.Command{
-		Use:     "remove",
+		Use:     "remove [name]",
 		Short:   "Remove custom aliases",
 		Aliases: []string{"rm"},
 		Example: `$ open alias remove blog`,
 		PreRunE: func(cmd *cobra.Command, args []string) error {
 			if len(args) == 0 {
-				return fmt.Errorf("url is required")
+				return fmt.Errorf("name is required")
 			}
 
 			return nil

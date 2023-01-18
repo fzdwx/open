@@ -38,10 +38,23 @@ $ open /root/
 
 ### open alias
 
-add alias
+User can add alias for url.
 
 ```shell
+## add
 $ open alias add https://fzdwx.github.io/ --name blog
+
+## delete
+$ open alias remove blog
+
+## list
+$ open alias list
+```
+
+`alias list` with `fzf`:
+
+```shell
+$ open alias ls | fzf --preview 'open alias info {}'
 ```
 
 ### open gh

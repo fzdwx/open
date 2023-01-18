@@ -8,9 +8,12 @@ import (
 
 var (
 	alias = &cobra.Command{
-		Use:     "alias [subcommand]",
-		Short:   "Manage custom aliases",
-		Example: `$ open alias add https://fzdwx.github.io/ --name blog`,
+		Use:   "alias [subcommand]",
+		Short: "Manage custom aliases",
+		Example: `$ open alias add https://fzdwx.github.io/ --name blog
+$ open alias list
+$ open alias ls | fzf --preview 'open alias info {}'
+$ open alias remove blog`,
 	}
 )
 
@@ -18,6 +21,7 @@ func Command(root *cobra.Command) *cobra.Command {
 	alias.AddCommand(add)
 	alias.AddCommand(list)
 	alias.AddCommand(remove)
+	alias.AddCommand(info)
 
 	loadAlias(root)
 

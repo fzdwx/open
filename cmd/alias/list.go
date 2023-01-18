@@ -11,7 +11,8 @@ var (
 		Use:     "list",
 		Short:   "Show custom aliases",
 		Aliases: []string{"ls"},
-		Example: `$ open alias list`,
+		Example: `$ open alias list
+$ open alias ls | fzf --preview 'open alias info {}'`,
 		Run: func(cmd *cobra.Command, args []string) {
 			if aliasMap, err := as.ReadToMap(); err == nil {
 				for _, alias := range aliasMap {
