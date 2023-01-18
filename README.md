@@ -14,47 +14,66 @@ go install github.com/fzdwx/open@latest
 ## use case
 
 ```shell
-# open url
-open https://github.com
-open https://google.com
+## Commands
+alias [subcommand]                  | Manage custom aliases                                     
+completion                          | Generate the autocompletion script for the specified shell
+gh [search keyword] | [subcommand]  | open github repo in browser                                  
+help [command]                      | Help about any command                                    
+history                             | Show open history                                         
+log                                 | Show open log                                             
+url                                 | open the specified url
+```
 
-# open the specified url
+### open url
+
+open the specified url
+
+```shell
+open https://www.bilibili.com/
 open url https://www.bilibili.com/
+open /root/
+```
 
-# open dir
-open .
-open /home/fzdwx
+### open alias
 
-# open github.com
-open gh
+add alias
 
-# open https://github.com/search?q=fzdwx
-open gh fzdwx
+```shell
+$ open alias add https://fzdwx.github.io/ --name blog
+```
 
-# open https://github.com/search?q=golang
-open gh golang
+### open gh
 
-# open https://github.com/search?q=sky&l=java
-open gh -l java sky
+open github repo in browser
 
-# open https://github.com/search?q=fzdwx
-open gh -l java sky
+```shell
+## Examples
+$ open gh        -> open https://github.com
+$ open gh .      -> open current dir(like `open gh repo`) in github
+$ open gh fzdwx  -> open https://github.com/search?q=fzdwx
+$ open gh -l java sky -> open https://github.com/search?q=sky&l=java
+$ open gh fzdwx -u -> https://github.com/search?q=fzdwx&type=users
 
-# open your github profile
-open gh profile
-open gh p
+## Commands
+profile p | open your github profile in browser. eg: https://github.com/fzdwx   
+repo .    | open github repository in browser. eg: https://github.com/fzdwx/open
 
-# open current project git remote url  in browser. https://github.com/fzdwx/open
-open gh repo
-
-# open https://github.com/fzdwx/open
-open gh repo fzdwx/open
-# open # https://github.com/{username}/open`,
-open gh repo open
-
-# preview logfile
-open log
-
+## Flags
+-f, --closed      | search issues,pr status is closed             
+-c, --commits     | set search type is commits                    
+-d, --debug       | show log in console                           
+-s, --discussions | set search type is discussions                
+-h, --help        | help for gh                                   
+-i, --issues      | set search type is issues                     
+-l, --lang string | search programming languages. eg: go,java,rust
+-m, --marketplace | set search type is marketplace                
+-o, --open        | search issues,pr status is open               
+-g, --packages    | set search type is packages                   
+-p, --pr          | set search type is pull requests              
+-r, --repo        | set search type is repositories               
+-t, --topics      | set search type is topics                     
+-u, --users       | set search type is users                      
+-w, --wikis       | set search type is wikis
 ```
 
 ## config (env)
@@ -66,9 +85,11 @@ OPEN_PREVIEW=bat(fallback to cat)
 
 ## RodeMap
 
-- [ ] read url from stdin. eg: `echo https://github.com/search?q=fzdwx | open`
 - [ ] history
     - [x] history record
-    - [ ] history view
+    - [x] history view
 - [ ] custom alias
+    - [x] add alias
+    - [ ] delete alias
+    - [ ] list alias
 
