@@ -2,6 +2,8 @@
 
 open url in browser.
 
+![image](https://user-images.githubusercontent.com/65269574/213114721-8305b43e-2e8f-4a96-ad96-22a35ed2bc1a.gif)
+
 ```shell
 go install github.com/fzdwx/open@latest 
 ```
@@ -100,11 +102,11 @@ OPEN_PREVIEW=bat(fallback to cat)
 
 ## RodeMap
 
-- [ ] history
+- [x] history
     - [x] history record
     - [x] history view
-- [ ] custom alias
+- [x] custom alias
     - [x] add alias
-    - [ ] delete alias
-    - [ ] list alias
+    - [x] delete alias
+    - [x] list alias
 
