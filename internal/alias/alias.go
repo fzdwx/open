@@ -37,7 +37,9 @@ func (m *Model) String() string {
 	return fmt.Sprintf("%s -> %s", m.Name, m.Url)
 }
 
-func Write(url string, name string) error {
+// Add alias
+// if alias exists, overwrite url.
+func Add(url string, name string) error {
 	val := &Model{
 		Time: time.Now().UnixMilli(),
 		Url:  url,
@@ -55,6 +57,21 @@ func Write(url string, name string) error {
 	}
 
 	return util.AppendJson(val, cons.AliasFileName())
+}
+
+// Remove alias
+func Remove(name string) (*Model, error) {
+	alias, err := ReadToMap()
+	if err != nil {
+		return nil, err
+	}
+
+	if val, ok := alias[name]; ok {
+		delete(alias, name)
+		return val, alias.refresh()
+	}
+
+	return nil, nil
 }
 
 func Read() ([]*Model, error) {

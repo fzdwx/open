@@ -6,7 +6,7 @@ import (
 )
 
 func TestWrite(t *testing.T) {
-	err := Write("https://fzdwx.github.io/", "blog")
+	err := Add("https://fzdwx.github.io/", "blog")
 	if err != nil {
 		t.Error(err)
 	}

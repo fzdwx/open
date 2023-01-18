@@ -30,7 +30,7 @@ var (
 
 		},
 		Run: func(cmd *cobra.Command, args []string) {
-			cobra.CheckErr(as.Write(args[0], name))
+			cobra.CheckErr(as.Add(args[0], name))
 
 			fmt.Printf("%s %s -> %s\n",
 				lipgloss.NewStyle().Bold(true).Foreground(util.Highlight).Render("√"),
