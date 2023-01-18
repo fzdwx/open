@@ -3,9 +3,7 @@ package history
 import (
 	"github.com/fzdwx/open/internal/cons"
 	"github.com/fzdwx/open/internal/user"
-	"github.com/gookit/goutil/fsutil"
-	"github.com/gookit/goutil/jsonutil"
-	"os"
+	"github.com/fzdwx/open/internal/util"
 	"time"
 )
 
@@ -16,20 +14,9 @@ type Model struct {
 }
 
 func Write(url string) error {
-	data, err := jsonutil.Encode(&Model{
+	return util.AppendJson(&Model{
 		Time:     time.Now().UnixMilli(),
 		Url:      url,
 		Username: user.Name(),
-	})
-
-	if err != nil {
-		return err
-	}
-
-	if err := cons.MkOpenDir(); err != nil {
-		return err
-	}
-
-	data = append(data, '\n')
-	return fsutil.WriteFile(cons.HistoryFileName(), data, os.ModePerm, fsutil.FsCWAFlags)
+	}, cons.HistoryFileName())
 }

@@ -43,6 +43,10 @@ func LogFileName() string {
 	return join("open", "log")
 }
 
+func AliasFileName() string {
+	return join("open", "alias")
+}
+
 func PreviewCommand() string {
 	return env.OrWithFunc("OPEN_PREVIEW", loopUpPreviewExec)
 }

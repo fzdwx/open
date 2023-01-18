@@ -3,6 +3,7 @@ package browser
 import (
 	"bufio"
 	"fmt"
+	"github.com/fzdwx/open/internal/util"
 	"github.com/gookit/goutil/strutil"
 	"os"
 
@@ -15,10 +16,7 @@ import (
 )
 
 var (
-	b         browser.Browser
-	subtle    = lipgloss.AdaptiveColor{Light: "#D9DCCF", Dark: "#383838"}
-	highlight = lipgloss.AdaptiveColor{Light: "#874BFD", Dark: "#7D56F4"}
-	special   = lipgloss.AdaptiveColor{Light: "#43BF6D", Dark: "#73F59F"}
+	b browser.Browser
 )
 
 func init() {
@@ -35,9 +33,9 @@ func Open(url string) error {
 
 	if err == nil {
 		fmt.Printf("%s %s %s\n",
-			lipgloss.NewStyle().Bold(true).Foreground(highlight).Render("√"),
+			lipgloss.NewStyle().Bold(true).Foreground(util.Highlight).Render("√"),
 			"open",
-			lipgloss.NewStyle().Bold(true).Foreground(special).Render(url),
+			lipgloss.NewStyle().Bold(true).Foreground(util.Special).Render(url),
 		)
 
 		if err := history.Write(url); err != nil {

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"fmt"
+	"github.com/fzdwx/open/cmd/alias"
 	"github.com/fzdwx/open/cmd/gh"
 	"github.com/fzdwx/open/cmd/history"
 	"github.com/fzdwx/open/cmd/log"
@@ -77,6 +78,7 @@ func init() {
 	rootCmd.AddCommand(history.Command())
 	rootCmd.AddCommand(url.Command())
 	rootCmd.AddCommand(log.Command())
+	rootCmd.AddCommand(alias.Command(rootCmd))
 
 	// Here you will define your flags and configuration settings.
 	// Cobra supports persistent flags, which, if defined here,

@@ -24,5 +24,6 @@ release version:
     git add .
     git commit -m "release {{version}}"
     git push
+    git push --tags
 
 
