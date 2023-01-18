@@ -29,7 +29,7 @@ var (
 			fmt.Printf("%s %s %s %s\n",
 				lipgloss.NewStyle().Bold(true).Foreground(util.Highlight).Render("√"),
 				lipgloss.NewStyle().Bold(true).Foreground(util.Special).Render(fmt.Sprintf("%s", val.Name)),
-				lipgloss.NewStyle().Bold(true).Foreground(util.Red).Render("≠"),
+				lipgloss.NewStyle().Bold(true).Foreground(util.Red).Render("≠>"),
 				val.Url,
 			)
 		},
