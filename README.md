@@ -4,6 +4,12 @@ open url in browser.
 
 ![image](https://user-images.githubusercontent.com/65269574/213114721-8305b43e-2e8f-4a96-ad96-22a35ed2bc1a.gif)
 
+```bash
+$ open alias ls | fzf --preview 'open alias info {}' --bind 'enter:execute(open alias run {})'
+```
+
+## Installation
+
 ```shell
 go install github.com/fzdwx/open@latest 
 ```
@@ -51,12 +57,6 @@ $ open alias remove blog
 
 ## list
 $ open alias list
-```
-
-`alias list` with `fzf`:
-
-```shell
-$ open alias ls | fzf --preview 'open alias info {}' --bind 'enter:execute(open alias run {})'
 ```
 
 ### open gh
