@@ -13,6 +13,8 @@ go install github.com/fzdwx/open@latest
 
 ## use case
 
+available commands:
+
 ```shell
 ## Commands
 alias [subcommand]                  | Manage custom aliases                                     
@@ -29,9 +31,9 @@ url                                 | open the specified url
 open the specified url
 
 ```shell
-open https://www.bilibili.com/
-open url https://www.bilibili.com/
-open /root/
+$ open https://www.bilibili.com/
+$ open url https://www.bilibili.com/
+$ open /root/
 ```
 
 ### open alias
