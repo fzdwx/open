@@ -35,6 +35,7 @@ func Command(root *cobra.Command) *cobra.Command {
 func loadAlias(root *cobra.Command) {
 	if aliasMap, err := as.ReadToMap(); err == nil {
 		for name, alias := range aliasMap {
+			alias := alias
 			root.AddCommand(&cobra.Command{
 				Use:    name,
 				Hidden: true,
