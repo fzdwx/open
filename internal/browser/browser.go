@@ -6,6 +6,7 @@ import (
 	"github.com/fzdwx/open/internal/util"
 	"github.com/gookit/goutil/strutil"
 	"os"
+	"time"
 
 	"github.com/charmbracelet/lipgloss"
 	"github.com/cli/go-gh/pkg/browser"
@@ -29,9 +30,14 @@ func init() {
 // 2. append to history
 // 3. open in browser
 func Open(url string) error {
-	err := b.Browse(url)
+	ch := make(chan error)
+	go func() {
+		ch <- b.Browse(url)
+	}()
 
-	if err == nil {
+	tiktok := time.After(1 * time.Second)
+
+	f := func() error {
 		fmt.Printf("%s %s %s\n",
 			lipgloss.NewStyle().Bold(true).Foreground(util.Highlight).Render("√"),
 			"open",
@@ -41,9 +47,20 @@ func Open(url string) error {
 		if err := history.Write(url); err != nil {
 			return err
 		}
+
+		return nil
 	}
 
-	return err
+	select {
+	case err := <-ch:
+		if err == nil {
+			return f()
+		}
+
+		return err
+	case <-tiktok:
+		return f()
+	}
 }
 
 // OpenFromClipboard read url from clipboard and open it.
