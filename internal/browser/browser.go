@@ -3,8 +3,10 @@ package browser
 import (
 	"bufio"
 	"fmt"
+	gitbBrowser "github.com/cli/browser"
 	"github.com/fzdwx/open/internal/util"
 	"github.com/gookit/goutil/strutil"
+	"io"
 	"os"
 	"time"
 
@@ -21,7 +23,9 @@ var (
 )
 
 func init() {
-	b = browser.New("", os.Stdout, os.Stderr)
+	gitbBrowser.Stdout = io.Discard
+	gitbBrowser.Stderr = io.Discard
+	b = browser.New("", gitbBrowser.Stdout, gitbBrowser.Stderr)
 }
 
 // Open url in browser
