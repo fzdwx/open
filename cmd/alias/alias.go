@@ -2,7 +2,11 @@ package alias
 
 import (
 	as "github.com/fzdwx/open/internal/alias"
+	"github.com/gookit/goutil/byteutil"
 	"github.com/spf13/cobra"
+	"io"
+	"os"
+	"os/exec"
 )
 
 var (
@@ -13,6 +17,19 @@ var (
 $ open alias list
 $ open alias ls | fzf --preview 'open alias info {}' --bind 'enter:execute(open alias run {})'
 $ open alias remove blog`,
+		Run: func(cmd *cobra.Command, args []string) {
+			fzfCommand := exec.Command("fzf", "--preview", "open alias info {}", "--bind", "enter:execute(open alias run {})")
+			buffer := byteutil.NewBuffer()
+			cobra.CheckErr(as.ForeachAlias(func(model *as.Model) {
+				io.WriteString(buffer, model.Name+"\n")
+			}))
+
+			fzfCommand.Stdin = buffer
+			fzfCommand.Stdout = os.Stdout
+			fzfCommand.Stderr = os.Stderr
+
+			cobra.CheckErr(fzfCommand.Run())
+		},
 	}
 )
 
