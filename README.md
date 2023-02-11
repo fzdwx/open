@@ -51,12 +51,16 @@ User can add alias for url.
 ```shell
 ## add
 $ open alias add https://fzdwx.github.io/ --name blog
+$ open alias add https://google.com/search?q=%s --name google
 
 ## delete
 $ open alias remove blog
 
 ## list
 $ open alias list
+
+## run
+$ open alias google "hello world"
 ```
 
 ### open gh
