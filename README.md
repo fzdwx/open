@@ -60,7 +60,7 @@ $ open alias remove blog
 $ open alias list
 
 ## run
-$ open alias google "hello world"
+$ open google "hello world"
 ```
 
 ### open gh
