@@ -2,7 +2,6 @@ package alias
 
 import (
 	as "github.com/fzdwx/open/internal/alias"
-	"github.com/fzdwx/open/internal/browser"
 	"github.com/spf13/cobra"
 )
 
@@ -12,7 +11,7 @@ var (
 		Short: "Manage custom aliases",
 		Example: `$ open alias add https://fzdwx.github.io/ --name blog
 $ open alias list
-$ open alias ls | fzf --preview 'open alias info {}'
+$ open alias ls | fzf --preview 'open alias info {}' --bind 'enter:execute(open alias run {})'
 $ open alias remove blog`,
 	}
 )
@@ -36,14 +35,7 @@ func loadAlias(root *cobra.Command) {
 	if aliasMap, err := as.ReadToMap(); err == nil {
 		for name, alias := range aliasMap {
 			alias := alias
-			root.AddCommand(&cobra.Command{
-				Use:    name,
-				Hidden: true,
-				Short:  "Open " + alias.Url + " in browser",
-				Run: func(cmd *cobra.Command, args []string) {
-					cobra.CheckErr(browser.Open(alias.Url))
-				},
-			})
+			root.AddCommand(alias.Command(name))
 		}
 	}
 }

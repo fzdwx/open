@@ -5,12 +5,13 @@ go 1.18
 require (
 	github.com/MarvinJWendt/testza v0.5.1
 	github.com/charmbracelet/lipgloss v0.6.0
-	github.com/cli/go-gh v1.0.0
+	github.com/cli/browser v1.1.0
+	github.com/cli/go-gh v1.1.0
 	github.com/fzdwx/x/strx v0.0.0-20220915021043-95f9efdbf779
-	github.com/gookit/goutil v0.6.1
+	github.com/gookit/goutil v0.6.4
 	github.com/gookit/slog v0.4.0
 	github.com/pterm/pcli v0.4.6
-	github.com/pterm/pterm v0.12.53
+	github.com/pterm/pterm v0.12.54
 	github.com/spf13/cobra v1.6.1
 	golang.design/x/clipboard v0.6.3
 )
@@ -20,7 +21,6 @@ require (
 	atomicgo.dev/cursor v0.1.1 // indirect
 	atomicgo.dev/keyboard v0.2.9 // indirect
 	github.com/aymanbagabas/go-osc52 v1.2.1 // indirect
-	github.com/cli/browser v1.1.0 // indirect
 	github.com/cli/safeexec v1.0.1 // indirect
 	github.com/cli/shurcooL-graphql v0.0.2 // indirect
 	github.com/containerd/console v1.0.3 // indirect
@@ -36,7 +36,7 @@ require (
 	github.com/mattn/go-isatty v0.0.17 // indirect
 	github.com/mattn/go-runewidth v0.0.14 // indirect
 	github.com/muesli/reflow v0.3.0 // indirect
-	github.com/muesli/termenv v0.13.0 // indirect
+	github.com/muesli/termenv v0.14.0 // indirect
 	github.com/rivo/uniseg v0.4.3 // indirect
 	github.com/sergi/go-diff v1.2.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
@@ -46,12 +46,13 @@ require (
 	github.com/tidwall/pretty v1.2.1 // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	github.com/xo/terminfo v0.0.0-20220910002029-abceb7e1c41e // indirect
-	golang.org/x/exp/shiny v0.0.0-20230113213754-f9f960f08ad4 // indirect
-	golang.org/x/image v0.3.0 // indirect
+	golang.org/x/exp/shiny v0.0.0-20230210204819-062eb4c674ab // indirect
+	golang.org/x/image v0.4.0 // indirect
 	golang.org/x/mobile v0.0.0-20221110043201-43a038452099 // indirect
-	golang.org/x/net v0.5.0 // indirect
-	golang.org/x/sys v0.4.0 // indirect
-	golang.org/x/term v0.4.0 // indirect
-	golang.org/x/text v0.6.0 // indirect
+	golang.org/x/net v0.6.0 // indirect
+	golang.org/x/sync v0.1.0 // indirect
+	golang.org/x/sys v0.5.0 // indirect
+	golang.org/x/term v0.5.0 // indirect
+	golang.org/x/text v0.7.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )

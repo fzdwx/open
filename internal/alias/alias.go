@@ -3,10 +3,12 @@ package alias
 import (
 	"bytes"
 	"fmt"
+	"github.com/fzdwx/open/internal/browser"
 	"github.com/fzdwx/open/internal/cons"
 	"github.com/fzdwx/open/internal/util"
 	"github.com/gookit/goutil/fsutil"
 	"github.com/gookit/goutil/jsonutil"
+	"github.com/spf13/cobra"
 	"time"
 )
 
@@ -35,6 +37,21 @@ func (m Map) refresh() error {
 
 func (m *Model) String() string {
 	return fmt.Sprintf("%s -> %s", m.Name, m.Url)
+}
+
+func (m *Model) Command(name string) *cobra.Command {
+	return &cobra.Command{
+		Use:    name,
+		Hidden: true,
+		Short:  "Open " + m.Url + " in browser",
+		Run: func(cmd *cobra.Command, args []string) {
+			url := m.Url
+			if len(args) > 0 {
+				url = fmt.Sprintf(url, toAnySlice(args)...)
+			}
+			cobra.CheckErr(browser.Open(url))
+		},
+	}
 }
 
 // Add alias
@@ -105,4 +122,32 @@ func ReadToMap() (Map, error) {
 	}
 
 	return aliasMap, nil
+}
+
+// ForeachAlias collection alias and call func
+func ForeachAlias(f func(*Model)) error {
+	alias, err := Read()
+	if err != nil {
+		return err
+	}
+
+	for _, model := range alias {
+		f(model)
+	}
+	return nil
+}
+
+// LsName list alias names
+func LsName() error {
+	return ForeachAlias(func(model *Model) {
+		fmt.Println(model.Name)
+	})
+}
+
+func toAnySlice[T any](args []T) []interface{} {
+	a := make([]interface{}, len(args))
+	for i, v := range args {
+		a[i] = v
+	}
+	return a
 }

@@ -12,7 +12,7 @@ var (
 		Use:     "run [name]",
 		Short:   "Run alias",
 		Hidden:  true,
-		Example: `$ open alias rim blog`,
+		Example: `$ open alias rm blog`,
 		PreRunE: func(cmd *cobra.Command, args []string) error {
 			if len(args) == 0 {
 				return fmt.Errorf("name is required")
