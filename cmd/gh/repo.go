@@ -5,6 +5,7 @@ import (
 	"github.com/fzdwx/open/internal/cons"
 	"github.com/fzdwx/open/internal/user"
 	"github.com/gookit/goutil/strutil"
+	"github.com/gookit/slog"
 	"github.com/spf13/cobra"
 	"os"
 	"os/exec"
@@ -41,6 +42,19 @@ func getUrlInGitProject() string {
 
 	cobra.CheckErr(command.Run())
 	remotePairs := strutil.Split(buffer.String(), "\n")
+	slog.Infof("remote pairs: %v", remotePairs)
+
+	if len(remotePairs) < 1 {
+		cobra.CheckErr("can not get remote url")
+	}
+
+	// get url from ssh git url
+	for _, v := range remotePairs {
+		url := getFromSshGitUrl(v)
+		if strutil.IsNotBlank(url) {
+			return url
+		}
+	}
 
 	pattern, err := regexp.Compile("(http|https):\\/\\/[\\w\\-_]+(\\.[\\w\\-_]+)+([\\w\\-\\.,@?^=%&:/~\\+#]*[\\w\\-\\@?^=%&/~\\+#])?")
 	if err != nil {
@@ -48,6 +62,24 @@ func getUrlInGitProject() string {
 	}
 
 	return pattern.FindString(remotePairs[0])
+}
+
+// get url from ssh git url
+// parse from:
+//
+//	origin  git@github.com:fzdwx/open.git (fetch)
+//	origin  git@github.com:fzdwx/open.git (push)
+func getFromSshGitUrl(url string) string {
+	// 匹配 GitHub 仓库 URL 的正则表达式
+	r := regexp.MustCompile(`git@github\.com:(\S+).git`)
+
+	// 进行匹配
+	m := r.FindStringSubmatch(url)
+	if m == nil {
+		return ""
+	}
+	repoPath := cons.GithubUrl + "/" + m[1]
+	return repoPath
 }
 
 // get url from args
