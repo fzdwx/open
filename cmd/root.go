@@ -2,6 +2,9 @@ package cmd
 
 import (
 	"fmt"
+	"os"
+	"os/signal"
+
 	"github.com/fzdwx/open/cmd/alias"
 	"github.com/fzdwx/open/cmd/gh"
 	"github.com/fzdwx/open/cmd/history"
@@ -14,8 +17,6 @@ import (
 	"github.com/gookit/slog/handler"
 	"github.com/pterm/pcli"
 	"github.com/pterm/pterm"
-	"os"
-	"os/signal"
 
 	"github.com/spf13/cobra"
 )
@@ -65,7 +66,6 @@ func Execute() {
 
 	// Execute cobra
 	if err := rootCmd.Execute(); err != nil {
-		_ = pcli.CheckForUpdates()
 		os.Exit(1)
 	}
 

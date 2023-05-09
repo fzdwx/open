@@ -1,12 +1,13 @@
 package alias
 
 import (
-	as "github.com/fzdwx/open/internal/alias"
-	"github.com/gookit/goutil/byteutil"
-	"github.com/spf13/cobra"
 	"io"
 	"os"
 	"os/exec"
+
+	as "github.com/fzdwx/open/internal/alias"
+	"github.com/gookit/goutil/byteutil"
+	"github.com/spf13/cobra"
 )
 
 var (

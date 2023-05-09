@@ -2,14 +2,19 @@ package alias
 
 import (
 	"bytes"
+	"errors"
 	"fmt"
+	"time"
+
+	"github.com/charmbracelet/lipgloss"
+	"github.com/fzdwx/infinite"
+	"github.com/fzdwx/infinite/components/input/text"
 	"github.com/fzdwx/open/internal/browser"
 	"github.com/fzdwx/open/internal/cons"
 	"github.com/fzdwx/open/internal/util"
 	"github.com/gookit/goutil/fsutil"
 	"github.com/gookit/goutil/jsonutil"
 	"github.com/spf13/cobra"
-	"time"
 )
 
 type Model struct {
@@ -57,6 +62,13 @@ func (m *Model) Command(name string) *cobra.Command {
 // Add alias
 // if alias exists, overwrite url.
 func Add(url string, name string) error {
+	if name == "" {
+		return errors.New("name is required")
+	}
+	if url == "" {
+		return errors.New("url is required")
+	}
+
 	val := &Model{
 		Time: time.Now().UnixMilli(),
 		Url:  url,
@@ -73,7 +85,33 @@ func Add(url string, name string) error {
 		}
 	}
 
-	return util.AppendJson(val, cons.AliasFileName())
+	err := util.AppendJson(val, cons.AliasFileName())
+	if err == nil {
+		fmt.Printf("%s %s -> %s\n",
+			lipgloss.NewStyle().Bold(true).Foreground(util.Highlight).Render("√"),
+			lipgloss.NewStyle().Bold(true).Foreground(util.Special).Render(name),
+			url,
+		)
+	}
+	return err
+}
+
+func AddInteractive() error {
+	name, err := infinite.NewText(
+		text.WithPrompt("alias name"),
+	).Display()
+
+	if err != nil {
+		return err
+	}
+	url, err := infinite.NewText(
+		text.WithPrompt("alias url"),
+	).Display()
+	if err != nil {
+		return err
+	}
+
+	return Add(url, name)
 }
 
 // Remove alias
