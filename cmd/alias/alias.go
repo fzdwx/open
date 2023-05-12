@@ -12,8 +12,9 @@ import (
 
 var (
 	alias = &cobra.Command{
-		Use:   "alias [subcommand]",
-		Short: "Manage custom aliases",
+		Use:     "alias [subcommand]",
+		Short:   "Manage custom aliases",
+		Aliases: []string{"ls"},
 		Example: `$ open alias add https://fzdwx.github.io/ --name blog
 $ open alias list
 $ open alias ls | fzf --preview 'open alias info {}' --bind 'enter:execute(open alias run {})'
