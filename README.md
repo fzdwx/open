@@ -70,14 +70,14 @@ open github repo in browser
 ```shell
 ## Examples
 $ open gh        -> open https://github.com
-$ open gh .      -> open current dir(like `open gh repo`) in github
+$ open gh .      -> open current dir in github
 $ open gh fzdwx  -> open https://github.com/search?q=fzdwx
 $ open gh -l java sky -> open https://github.com/search?q=sky&l=java
 $ open gh fzdwx -u -> https://github.com/search?q=fzdwx&type=users
 
 ## Commands
 profile p | open your github profile in browser. eg: https://github.com/fzdwx   
-repo .    | open github repository in browser. eg: https://github.com/fzdwx/open
+repo    | open github repository in browser. eg: https://github.com/fzdwx/open
 
 ## Flags
 -f, --closed      | search issues,pr status is closed             
