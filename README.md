@@ -77,7 +77,7 @@ $ open gh fzdwx -u -> https://github.com/search?q=fzdwx&type=users
 
 ## Commands
 profile p | open your github profile in browser. eg: https://github.com/fzdwx   
-repo    | open github repository in browser. eg: https://github.com/fzdwx/open
+repo    | search github repo. default is interactive
 
 ## Flags
 -f, --closed      | search issues,pr status is closed             
