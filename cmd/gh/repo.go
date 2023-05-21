@@ -82,7 +82,9 @@ func (m *model) Init() tea.Cmd {
 		NextPage: keyMap.NextPage,
 		PrevPage: keyMap.PrevPage,
 	}
+	m.selection.Prompt = "Which repository do you want to open ?"
 	m.selection.FilterInput = m.filterInput
+	m.filterInput.Prompt = "Search: "
 
 	return m.selection.Init()
 }
@@ -97,6 +99,10 @@ func (m *model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			m.selection.Choices = mapper(m.items)
 			m.selection.RefreshChoices()
 			return m, nil
+		case "enter":
+			if len(m.items) == 0 {
+				return m, nil
+			}
 		case "esc":
 			return m, tea.Quit
 		}
