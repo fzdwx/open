@@ -3,6 +3,8 @@ package alias
 import (
 	as "github.com/fzdwx/open/internal/alias"
 	"github.com/spf13/cobra"
+	"os"
+	"path"
 )
 
 var (
@@ -30,9 +32,23 @@ var (
 		},
 	}
 
+	project = &cobra.Command{
+		Use:     "project",
+		Short:   "Add project aliases",
+		Aliases: []string{"."},
+		Run: func(cmd *cobra.Command, args []string) {
+			dir, err := os.Getwd()
+			if err != nil {
+				cobra.CheckErr(err)
+			}
+			cobra.CheckErr(as.Add(dir, "project:"+path.Base(dir)))
+		},
+	}
+
 	name string
 )
 
 func init() {
 	add.Flags().StringVarP(&name, "name", "n", "", "alias name")
+	add.AddCommand(project)
 }

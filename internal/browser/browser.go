@@ -36,7 +36,7 @@ func init() {
 func Open(url string) error {
 	ch := make(chan error)
 	go func() {
-		ch <- b.Browse(url)
+		ch <- open(url)
 	}()
 
 	tiktok := time.After(1 * time.Second)
@@ -65,6 +65,14 @@ func Open(url string) error {
 	case <-tiktok:
 		return f()
 	}
+}
+
+func open(url string) error {
+	if IsLocalFilePath(url) {
+		return nil
+	}
+
+	return b.Browse(url)
 }
 
 // OpenFromClipboard read url from clipboard and open it.
@@ -119,4 +127,11 @@ func IsWebUrlOrLocalFilePath(s string) bool {
 // IsNotWebUrlOrLocalFilePath check s is not web url or local file path?
 func IsNotWebUrlOrLocalFilePath(s string) bool {
 	return !IsWebUrlOrLocalFilePath(s)
+}
+
+// IsLocalFilePath check s is local file path?
+func IsLocalFilePath(s string) bool {
+	_, err := os.Open(s)
+
+	return err == nil
 }
