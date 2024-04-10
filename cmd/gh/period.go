@@ -1,6 +1,7 @@
 package gh
 
 import (
+	"fmt"
 	"github.com/charmbracelet/bubbles/key"
 	"github.com/charmbracelet/lipgloss"
 	"github.com/fzdwx/infinite"
@@ -8,7 +9,6 @@ import (
 	"github.com/fzdwx/infinite/components/selection/singleselect"
 	"github.com/fzdwx/infinite/style"
 	"github.com/fzdwx/open/internal/browser"
-	"github.com/fzdwx/open/internal/cons"
 	"github.com/gookit/goutil/strutil"
 	"github.com/gookit/slog"
 	"github.com/spf13/cobra"
@@ -94,7 +94,9 @@ func getUrlInGitProject() string {
 }
 
 var (
-	urlMatch = regexp.MustCompile("(http|https):\\/\\/[\\w\\-_]+(\\.[\\w\\-_]+)+([\\w\\-\\.,@?^=%&:/~\\+#]*[\\w\\-\\@?^=%&/~\\+#])?")
+	urlMatch     = regexp.MustCompile("(http|https):\\/\\/[\\w\\-_]+(\\.[\\w\\-_]+)+([\\w\\-\\.,@?^=%&:/~\\+#]*[\\w\\-\\@?^=%&/~\\+#])?")
+	gitUrlMatch  = regexp.MustCompile(`git@([a-zA-Z0-9.-]+):`)
+	gitRepoMatch = regexp.MustCompile(`:([a-zA-Z0-9/._-]+).git`)
 )
 
 // get url from ssh git url
@@ -103,14 +105,13 @@ var (
 //	origin  git@github.com:fzdwx/open.git (fetch)
 //	origin  git@github.com:fzdwx/open.git (push)
 func getFromSshGitUrl(url string) string {
-	// 匹配 GitHub 仓库 URL 的正则表达式
-	r := regexp.MustCompile(`git@github\.com:(\S+).git`)
-
-	// 进行匹配
-	m := r.FindStringSubmatch(url)
-	if m == nil {
+	matches1 := gitUrlMatch.FindStringSubmatch(url)
+	if len(matches1) == 0 {
 		return ""
 	}
-	repoPath := cons.GithubUrl + "/" + m[1]
-	return repoPath
+	matches2 := gitRepoMatch.FindStringSubmatch(url)
+	if len(matches2) == 0 {
+		return ""
+	}
+	return fmt.Sprintf("https://%s/%s", matches1[1], matches2[1])
 }
